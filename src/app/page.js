@@ -19,10 +19,10 @@ export default function Home() {
           architectures, Alpha Codes is your gateway to enhancing your coding
           skills and igniting your passion for software development.
         </p>
-
-        <Button color="amber"><Link href="/contact" key={"Contact"} >
+        <Link href="/contact" key={"Contact"} >
+        <Button color="amber">
             Contact
-          </Link></Button>
+          </Button></Link>
           
    
         {/* <div className={styles.brands}>
