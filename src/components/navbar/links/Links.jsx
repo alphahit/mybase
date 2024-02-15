@@ -33,14 +33,14 @@ export default function Links() {
         {links.map((link) => (
           <NavLink item={link} key={link.title} />
         ))}
-        {session ? (
+        {/* {session ? (
           <>
             {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
             <Button variant="gradient">LOGOUT</Button>
           </>
         ) : (
           <NavLink item={{ title: "Login", path: "/login" }} />
-        )}
+        )} */}
       </div>
       <Image
         className={styles.menuButton}

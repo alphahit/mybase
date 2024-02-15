@@ -54,7 +54,7 @@ export const CardContainer = ({ children, className, containerClassName }) => {
         )}
         style={{
           perspective: "1000px",
-          //backgroundColor: "red",
+          backgroundColor: "#0d0c22",
         }}
       >
         <div
@@ -93,12 +93,12 @@ export const CardInside = ({ children, className, post }) => {
         "[transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d]",
         className
       )}
-      style={{}}
+      style={{ backgroundColor: "#0d0c22" }}
     >
       {children}
       <Card
         shadow={false}
-        className="relative grid h-[40rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center"
+        className="bg-black relative grid h-[40rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center"
       >
         <CardHeader
           floated={false}

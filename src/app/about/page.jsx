@@ -1,5 +1,10 @@
 import Image from "next/image";
 import styles from "./about.module.css";
+import {
+  TextRevealCard,
+  TextRevealCardDescription,
+  TextRevealCardTitle,
+} from "@/components/ui/TextReveal";
 
 export const metadata = {
   title: "About Page",
@@ -11,8 +16,21 @@ const AboutPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h2 className={styles.subtitle}>About Prateek</h2>
-        <h1 className={styles.title}>
+        <TextRevealCard text="You want the app." revealText="I know the code.">
+          <p className={styles.title}>Prateek Priyadarshi</p>
+
+          <TextRevealCardDescription>
+            With a vibrant journey from a React Native Developer intern to a
+            Software Developer at Squbix Digital, I, Prateek Priyadarshi, have
+            shaped digital experiences that resonate. My toolkit spans React
+            Native, Next.js, and a blend of modern technologies, driving me to
+            create seamless, user-centric applications. From ideation to
+            deployment, my projects—ranging from social media apps to e-commerce
+            platforms—reflect a dedication to excellence and a passion for
+            pushing boundaries in web and software development.
+          </TextRevealCardDescription>
+        </TextRevealCard>
+        {/* <h1 className={styles.title}>
           Crafting Innovative Solutions Through Code.
         </h1>
         <p className={styles.desc}>
@@ -24,7 +42,8 @@ const AboutPage = () => {
           deployment, my projects—ranging from social media apps to e-commerce
           platforms—reflect a dedication to excellence and a passion for pushing
           boundaries in web and software development.
-        </p>
+        </p> */}
+
         <div className={styles.boxes}>
           <div className={styles.box}>
             <h1>3+</h1>
