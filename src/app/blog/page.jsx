@@ -1,5 +1,6 @@
 import PostCard from "@/components/postCard/postCard";
 import styles from "./blog.module.css";
+import { CardContainer } from "@/components/ui/ThreeDCard";
 // import { getPosts } from "@/lib/data";
 
 // FETCH DATA WITH AN API
