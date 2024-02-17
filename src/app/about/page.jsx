@@ -16,7 +16,10 @@ const AboutPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <TextRevealCard text="You want the app." revealText="I know the code.">
+        <TextRevealCard
+          text="You know the business."
+          revealText="I know the code."
+        >
           <p className={styles.title}>Prateek Priyadarshi</p>
 
           <TextRevealCardDescription>

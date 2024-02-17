@@ -48,23 +48,18 @@ export const CardContainer = ({ children, className, containerClassName }) => {
   return (
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <div
-        className={cn(
-          "py-5 flex items-center justify-center",
-          containerClassName
-        )}
-        style={{
-          perspective: "1000px",
-          backgroundColor: "#0d0c22",
-        }}
+        className="relative group cursor-pointer"
+        ref={containerRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       >
+        <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
         <div
-          ref={containerRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
           className={cn(
-            "flex items-center justify-center relative transition-all duration-200 ease-linear",
-            className
+            "relative p-2 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6",
+            containerClassName,
+            "perspective[1000px] bg-transparent"
           )}
           style={{
             transformStyle: "preserve-3d",
@@ -83,19 +78,21 @@ export const CardInside = ({ children, className, post }) => {
   //     backgroundImage: `url('${post.img}')`,
   //   }
   // : {};
+  // const cardHeaderStyle = {
+  //   //backgroundImage: `url('${post.img}')`,
+  //   backgroundImage: `url(' https://images.pexels.com/photos/39284/macbook-apple-imac-computer-39284.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+  // };
   const cardHeaderStyle = {
-    //backgroundImage: `url('${post.img}')`,
-    backgroundImage: `url(' https://images.pexels.com/photos/39284/macbook-apple-imac-computer-39284.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+    backgroundImage: `url('${post.img}')`,
   };
   return (
     <div
       className={cn(
-        "[transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d]",
+        "[transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d] bg-transparent",
         className
       )}
-      style={{ backgroundColor: "#0d0c22" }}
     >
-      {children}
+      {/* {children} */}
       <Card
         shadow={false}
         className="bg-black relative grid h-[40rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center"
@@ -115,64 +112,64 @@ export const CardInside = ({ children, className, post }) => {
             color="white"
             className="mb-6 font-medium leading-[1.5]"
           >
-            {/* {post.title} */}
-            The Future of Web Development
+            {post.title}
           </Typography>
           <Typography variant="h5" className="mb-4 text-gray-400">
-            {/* {post.body} */}
-            Best practices for back-end development, covering databases, server
-            architecture, and API design.
+            {post.body}
           </Typography>
-          <CardItem />
+          {/* <CardItem  /> */}
+          <Button>
+            <Link href={`/blog/${post.id}`}>READ MORE</Link>
+          </Button>
         </CardBody>
       </Card>
     </div>
   );
 };
 
-export const CardItem = ({
-  as: Tag = "div",
-  children,
-  className,
-  translateX = 0,
-  translateY = 0,
-  translateZ = 0,
-  rotateX = 0,
-  rotateY = 0,
-  rotateZ = 0,
-  ...rest
-}) => {
-  const ref = useRef(null);
+// export const CardItem = ({
+//   as: Tag = "div",
+//   children,
+//   className,
+//   translateX = 0,
+//   translateY = 0,
+//   translateZ = 0,
+//   rotateX = 0,
+//   rotateY = 0,
+//   rotateZ = 0,
+//   ...rest
+// }) => {
+//   const ref = useRef(null);
 
-  const [isMouseEntered] = useMouseEnter();
+//   const [isMouseEntered] = useMouseEnter();
 
-  useEffect(() => {
-    handleAnimations();
-  }, [isMouseEntered]);
+//   useEffect(() => {
+//     handleAnimations();
+//   }, [isMouseEntered]);
 
-  const handleAnimations = () => {
-    if (!ref.current) return;
-    if (isMouseEntered) {
-      ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
-    } else {
-      ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
-    }
-  };
+//   const handleAnimations = () => {
+//     if (!ref.current) return;
+//     if (isMouseEntered) {
+//       ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+//     } else {
+//       ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
+//     }
+//   };
 
-  return (
-    <Tag
-      ref={ref}
-      className={cn("w-fit transition duration-200 ease-linear", className)}
-      {...rest}
-      style={{}}
-    >
-      {children}
-      <Button>
-        <Link href={`/blog/post`}>READ MORE</Link>
-      </Button>
-    </Tag>
-  );
-};
+//   return (
+//     <Tag
+//       ref={ref}
+//       className={cn("w-fit transition duration-200 ease-linear", className)}
+//       {...rest}
+//       style={{}}
+//     >
+//       {children}
+//       <Button>
+//         <Link href={`/blog/post`}>READ MORE</Link>
+//       </Button>
+//     </Tag>
+//   );
+// };
 
 // Create a hook to use the context
 export const useMouseEnter = () => {
