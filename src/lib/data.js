@@ -20,7 +20,11 @@ export const getPosts = async () => {
   export const getPost = async (slug) => {
     try {
       await connectToDb()
-      const post = await Post.find({slug: slug})
+      //Find Will Return an array 
+      //const post = await Post.find({slug: slug})
+
+      //Use FindOne
+      const post = await Post.findOne({slug: slug})
       return post
     } catch (error) {
        console.error('Error getting posts:', error);

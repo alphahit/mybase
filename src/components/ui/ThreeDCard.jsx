@@ -59,7 +59,7 @@ export const CardContainer = ({ children, className, containerClassName }) => {
           className={cn(
             "relative p-2 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6",
             containerClassName,
-            "perspective[1000px] bg-transparent"
+            "perspective[1000px] bg-black"
           )}
           style={{
             transformStyle: "preserve-3d",
@@ -73,29 +73,24 @@ export const CardContainer = ({ children, className, containerClassName }) => {
 };
 
 export const CardInside = ({ children, className, post }) => {
-  // const cardHeaderStyle = post.img
-  // ? {
-  //     backgroundImage: `url('${post.img}')`,
-  //   }
-  // : {};
-  // const cardHeaderStyle = {
-  //   //backgroundImage: `url('${post.img}')`,
-  //   backgroundImage: `url(' https://images.pexels.com/photos/39284/macbook-apple-imac-computer-39284.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
-  // };
   const cardHeaderStyle = {
-    backgroundImage: `url('${post.img}')`,
+    //backgroundImage: `url('${post.img}')`,
+    backgroundImage: `url(' https://images.pexels.com/photos/925743/pexels-photo-925743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
   };
+  // const cardHeaderStyle = {
+  //   backgroundImage: `url('${post.img}')`,
+  // };
   return (
     <div
       className={cn(
-        "[transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d] bg-transparent",
+        "w-full [transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d] bg-transparent",
         className
       )}
     >
       {/* {children} */}
       <Card
         shadow={false}
-        className="bg-black relative grid h-[40rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center"
+        className="bg-black relative grid h-[25rem] w-full max-w-[28rem] items-center justify-center overflow-hidden text-center"
       >
         <CardHeader
           floated={false}
@@ -104,9 +99,14 @@ export const CardInside = ({ children, className, post }) => {
           className="absolute inset-0 m-0 h-full w-full rounded-none bg-cover bg-center"
           style={cardHeaderStyle} // Apply the dynamic style here
         >
-          <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
+          <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50">
+            {/* ADD logo HERE */}
+          </div>
         </CardHeader>
-        <CardBody className="relative py-14 px-6 md:px-12">
+        <CardBody className="relative py-14 px-6 md:px-12 items-center justify-center">
+          {/* <Typography variant="h5" className="mb-4 text-gray-400">
+            {post.desc}
+          </Typography> */}
           <Typography
             variant="h2"
             color="white"
@@ -114,62 +114,59 @@ export const CardInside = ({ children, className, post }) => {
           >
             {post.title}
           </Typography>
-          <Typography variant="h5" className="mb-4 text-gray-400">
-            {post.body}
-          </Typography>
-          {/* <CardItem  /> */}
-          <Button>
-            <Link href={`/blog/${post.id}`}>READ MORE</Link>
-          </Button>
         </CardBody>
+        <CardItem post={post} />
       </Card>
     </div>
   );
 };
 
-// export const CardItem = ({
-//   as: Tag = "div",
-//   children,
-//   className,
-//   translateX = 0,
-//   translateY = 0,
-//   translateZ = 0,
-//   rotateX = 0,
-//   rotateY = 0,
-//   rotateZ = 0,
-//   ...rest
-// }) => {
-//   const ref = useRef(null);
+export const CardItem = ({
+  post,
+  as: Tag = "div",
+  children,
+  className,
+  translateX = 10,
+  translateY = 0,
+  translateZ = 0,
+  rotateX = 0,
+  rotateY = 0,
+  scale = 1.2,
+  rotateZ = 360,
+  ...rest
+}) => {
+  const ref = useRef(null);
 
-//   const [isMouseEntered] = useMouseEnter();
+  const [isMouseEntered] = useMouseEnter();
 
-//   useEffect(() => {
-//     handleAnimations();
-//   }, [isMouseEntered]);
+  useEffect(() => {
+    handleAnimations();
+  }, [isMouseEntered]);
 
-//   const handleAnimations = () => {
-//     if (!ref.current) return;
-//     if (isMouseEntered) {
-//       ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
-//     } else {
-//       ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
-//     }
-//   };
+  const handleAnimations = () => {
+    if (!ref.current) return;
+    if (isMouseEntered) {
+      ref.current.style.transform = `scale(${scale}) translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+    } else {
+      ref.current.style.transform = `scale(1) translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
+    }
+  };
 
-//   return (
-//     <Tag
-//       ref={ref}
-//       className={cn("w-fit transition duration-200 ease-linear", className)}
-//       {...rest}
-//       style={{}}
-//     >
-//       {children}
-//       <Button>
-//         <Link href={`/blog/post`}>READ MORE</Link>
-//       </Button>
-//     </Tag>
-//   );
-// };
+  return (
+    <Tag
+      ref={ref}
+      className={cn("w-full transition duration-200 ease-linear", className)}
+      {...rest}
+    >
+      {/* {children} */}
+
+      <Button>
+        {/* <Link href={`/blog/${post.id}`}>READ MORE</Link> */}
+        <Link href={`/blog/${post.slug}`}>READ MORE</Link>
+      </Button>
+    </Tag>
+  );
+};
 
 // Create a hook to use the context
 export const useMouseEnter = () => {

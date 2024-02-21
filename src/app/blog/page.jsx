@@ -14,6 +14,10 @@ import { getPosts, getUsers } from "@/lib/data";
 
 //   return res.json();
 // };
+export const metadata = {
+  title: "Blogs",
+  description: "Blog Page",
+};
 
 const BlogPage = async () => {
   // FETCH DATA WITH AN API
