@@ -24,13 +24,12 @@ const AboutPage = () => {
 
           <TextRevealCardDescription>
             With a vibrant journey from a React Native Developer intern to a
-            Software Developer at Squbix Digital, I, Prateek Priyadarshi, have
-            shaped digital experiences that resonate. My toolkit spans React
-            Native, Next.js, and a blend of modern technologies, driving me to
-            create seamless, user-centric applications. From ideation to
-            deployment, my projects—ranging from social media apps to e-commerce
-            platforms—reflect a dedication to excellence and a passion for
-            pushing boundaries in web and software development.
+            senior Software Developer, I, Prateek Priyadarshi, have shaped
+            digital experiences that resonate. My toolkit spans MERN Stack,
+            React Native, Next.js, and a blend of modern technologies, driving
+            me to create seamless, user-centric applications. From ideation to
+            deployment, my projects - range from Hyperlocal Market Delivery
+            apps, E-Commerce and HealthCare domains.
           </TextRevealCardDescription>
         </TextRevealCard>
         {/* <h1 className={styles.title}>
@@ -62,8 +61,11 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
-      <div className={styles.imgContainer}>
-        <Image src="/about.png" alt="About Image" fill className={styles.img} />
+      <div
+        className={`${styles.imgContainer} flex items-center justify-center`}
+      >
+        {/* <Image src="/about.png" alt="About Image" fill className={styles.img} /> */}
+        <h1>Projects Gallore Coming Soon ... </h1>
       </div>
     </div>
   );

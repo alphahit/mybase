@@ -126,13 +126,13 @@ export const CardItem = ({
   as: Tag = "div",
   children,
   className,
-  translateX = 10,
+  translateX = 0,
   translateY = 0,
   translateZ = 0,
   rotateX = 0,
   rotateY = 0,
   scale = 1.2,
-  rotateZ = 360,
+  rotateZ = 0,
   ...rest
 }) => {
   const ref = useRef(null);
