@@ -10,15 +10,33 @@ export const generateMetadata = async ({ params }) => {
   const post = await getPost(slug);
 
   return {
-    title: post.title,
-    description: post.desc,
+    title: post?.title,
+    description: post?.desc,
   };
 };
 
+//FETCH DATA WITH AN API
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {
+    next: { revalidate: 3600 },
+  });
+
+  if (!res.ok) {
+    throw new Error("Something went wrong");
+  }
+
+  return res.json();
+};
+
 const SinglePostPage = async ({ params }) => {
+  console.log("params====>", params);
   const { slug } = params;
 
-  const post = await getPost(slug);
+  //Fetch DATA with an API
+  const post = await getData(slug);
+
+  //Fetch DATA without an API
+  //const post = await getPost(slug);
   console.log("post===>", post);
   return (
     <div className={styles.container}>
@@ -44,9 +62,8 @@ const SinglePostPage = async ({ params }) => {
             </Suspense>
           )} */}
           <div className={styles.detailText}>
-            {/* <span className={styles.detailTitle}>Published</span> */}
             <span className={styles.detailValue}>
-              {post.createdAt.toString().slice(0, 16)}
+              {post.createdAt.toString().slice(0, 16).split("T")[0]}
             </span>
           </div>
         </div>
