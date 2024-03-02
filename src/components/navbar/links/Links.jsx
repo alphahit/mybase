@@ -4,7 +4,9 @@ import Image from "next/image";
 import styles from "./links.module.css";
 import NavLink from "./navLink/navLink";
 import { Button } from "@material-tailwind/react";
-export default function Links() {
+import { handleGithubLogout } from "@/lib/action";
+import { auth } from "@/lib/auth";
+export default function Links({ session }) {
   const [open, setOpen] = useState(false);
   const links = [
     {
@@ -24,8 +26,7 @@ export default function Links() {
       path: "/blog",
     },
   ];
-  //TEMPORARY
-  const session = true;
+
   const isAdmin = true;
   return (
     <div className={styles.container}>
@@ -33,14 +34,18 @@ export default function Links() {
         {links.map((link) => (
           <NavLink item={link} key={link.title} />
         ))}
-        {/* {session ? (
+        {session?.user ? (
           <>
             {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
-            <Button variant="gradient">LOGOUT</Button>
+            <form action={handleGithubLogout}>
+              <Button type="submit" variant="gradient">
+                LOGOUT
+              </Button>
+            </form>
           </>
         ) : (
           <NavLink item={{ title: "Login", path: "/login" }} />
-        )} */}
+        )}
       </div>
       <Image
         className={styles.menuButton}

@@ -2,6 +2,7 @@
 // Unlike client-side actions, which happen in the user's browser or device, server actions are processed on a web server.
 // These actions can encompass a wide range of activities, including but not limited to:
 "use server"
+import { signIn, signOut } from "./auth"
 import { Post } from "./models"
 import { connectToDb } from "./utils"
 
@@ -62,3 +63,16 @@ export const deletePost = async (formData) => {
         return {error : "Something Went Wrong"}
     }
 }
+
+
+export const handleGithubLogin = async () => {
+    "use server";
+
+    await signIn("github"); 
+  };
+
+  export const handleGithubLogout = async () => {
+    "use server";
+
+    await signOut(); 
+  };
