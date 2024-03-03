@@ -49,7 +49,9 @@ const postSchema = new mongoose.Schema({
     },
     type:{
         type:String,
-        required: true,
+    },
+    subDesc:{
+        type:String,
     },
     slug:{
         type:String,

@@ -5,7 +5,7 @@
 import { signIn, signOut } from "./auth"
 import { Post } from "./models"
 import { connectToDb } from "./utils"
-
+import { revalidatePath } from "next/cache";
 // Data Processing: Manipulating or performing calculations on data before sending it to the client or storing it in a database.
 // Database Operations: Creating, reading, updating, and deleting data in a database (often abbreviated as CRUD operations).
 // Authentication and Authorization: Verifying user identities (authentication) and determining their access rights (authorization) to various resources or actions.
@@ -24,18 +24,19 @@ export const addPost = async (formData) => {
     // const slug = formData.get('slug')
     // const userId = formData.get('userId')
 
-    const {title, desc, slug, userId} = Object.fromEntries(formData) 
+    const {title, desc, slug, userId, type, subDesc} = Object.fromEntries(formData) 
 
     console.log(formData)
-    console.log("title: " + title + " desc: " + desc + " slug: " + slug)
 
     try{
         connectToDb()
         const newPost = new Post({
-            title,
-            desc,
-            slug,
-            userId
+            title : title,
+            desc : desc,
+            slug : slug,
+            userId : userId,
+            type : type,
+            subDesc : subDesc
         });
         await newPost.save()
         console.log("Saved To DB")
@@ -67,8 +68,10 @@ export const deletePost = async (formData) => {
 
 export const handleGithubLogin = async () => {
     "use server";
-
     await signIn("github"); 
+    //let signInResult = 
+    // console.log("signIn===>",signInResult)
+  
   };
 
   export const handleGithubLogout = async () => {

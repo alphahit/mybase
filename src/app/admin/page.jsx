@@ -60,6 +60,50 @@ const AdminPage = () => {
             borderRadius: "4px",
           }}
         />
+        {/* <input
+          type="text"
+          placeholder="subDesc"
+          name="subDesc"
+          style={{
+            padding: "10px",
+            color: "#333",
+            borderColor: "#ccc",
+            borderWidth: "1px",
+            borderRadius: "4px",
+            minHeight: "100px",
+          }}
+        /> */}
+        <textarea
+          placeholder="Paste your code here"
+          name="subDesc"
+          style={{
+            padding: "10px",
+            color: "#333",
+            borderColor: "#ccc",
+            borderWidth: "1px",
+            borderRadius: "4px",
+            minHeight: "100px",
+            fontFamily: "monospace",
+            whiteSpace: "pre-wrap",
+            overflowWrap: "break-word",
+          }}
+        />
+        <select
+          name="type"
+          style={{
+            padding: "10px",
+            color: "#333",
+            borderColor: "#ccc",
+            borderWidth: "1px",
+            borderRadius: "4px",
+          }}
+        >
+          <option value="dsa">DSA</option>
+          <option value="rust">Rust</option>
+          <option value="js">JavaScript</option>
+          <option value="react">React</option>
+          <option value="react-native">React Native</option>
+        </select>
         <button
           style={{
             padding: "10px 20px",
