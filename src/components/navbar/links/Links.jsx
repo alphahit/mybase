@@ -92,13 +92,13 @@ export default function Links({ session }) {
             </div>
           </>
         ) : (
-          // <NavLink item={{ title: "Login", path: "/login" }} />
-          <Button
-            onClick={() => handleGithubLogin()} // Directly call signIn with "github" provider
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out transform hover:scale-110 shadow-lg"
-          >
-            Login with Github
-          </Button>
+          <NavLink item={{ title: "Login", path: "/login" }} />
+          // <Button
+          //   onClick={() => handleGithubLogin()} // Directly call signIn with "github" provider
+          //   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out transform hover:scale-110 shadow-lg"
+          // >
+          //   Login with Github
+          // </Button>
         )}
       </div>
       <Image
