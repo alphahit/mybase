@@ -5,17 +5,17 @@ import { getPosts, getUsers } from "@/lib/data";
 // import { getPosts } from "@/lib/data";
 
 //FETCH DATA WITH AN API
-const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/blog", {
-    next: { revalidate: 3600 },
-  });
+// const getData = async () => {
+//   const res = await fetch("http://localhost:3000/api/blog", {
+//     next: { revalidate: 3600 },
+//   });
 
-  if (!res.ok) {
-    throw new Error("Something went wrong");
-  }
+//   if (!res.ok) {
+//     throw new Error("Something went wrong");
+//   }
 
-  return res.json();
-};
+//   return res.json();
+// };
 export const metadata = {
   title: "Blogs",
   description: "Blog Page",
@@ -26,7 +26,7 @@ const BlogPage = async () => {
   //const posts = await getData();
 
   // FETCH DATA WITHOUT AN API
-   const posts = await getPosts();
+  const posts = await getPosts();
 
   //const users = await getUsers();
   return (

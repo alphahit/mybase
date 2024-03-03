@@ -21,9 +21,12 @@ export const generateMetadata = async ({ params }) => {
 
 //FETCH DATA WITH AN API
 const getData = async (slug) => {
-  const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {
-    next: { revalidate: 3600 },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/blog/${slug}`,
+    {
+      next: { revalidate: 3600 },
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Something went wrong");
