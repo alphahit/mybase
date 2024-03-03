@@ -11,7 +11,7 @@ import styles from "./links.module.css";
 import NavLink from "./navLink/navLink";
 import { Button } from "@material-tailwind/react";
 import { signIn } from "next-auth/react";
-import { handleGithubLogout } from "@/lib/action";
+import { handleGithubLogin, handleGithubLogout } from "@/lib/action";
 export default function Links({ session }) {
   const [open, setOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -94,7 +94,7 @@ export default function Links({ session }) {
         ) : (
           // <NavLink item={{ title: "Login", path: "/login" }} />
           <Button
-            onClick={() => signIn("github")} // Directly call signIn with "github" provider
+            onClick={() => handleGithubLogin()} // Directly call signIn with "github" provider
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out transform hover:scale-110 shadow-lg"
           >
             Login with Github
