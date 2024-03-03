@@ -2,15 +2,19 @@ import Links from "./links/Links";
 import styles from "./navbar.module.css";
 import Link from "next/link";
 import Image from "next/image";
-export default function Navbar() {
+import { auth } from "@/lib/auth";
+const Navbar = async () => {
+  const session = await auth();
+  console.log("session ==>", session);
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.logo}>
         <Image src="/ppac2.png" alt="" height={80} width={240} />
       </Link>
       <div>
-        <Links />
+        <Links session={session} />
       </div>
     </div>
   );
-}
+};
+export default Navbar;
