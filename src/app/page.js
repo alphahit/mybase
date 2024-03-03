@@ -40,7 +40,7 @@ export default function Home() {
           Algorithms (DSA) challenges, and a treasure trove of projects in React
           Native, React, and backend development. Dive into my journey of
           coding, where I unravel complex problems and share insights from my
-          personal learning path. Whether you're here to explore DSA solutions,
+          personal learning path. Whether you are here to explore DSA solutions,
           get inspired by React and React Native projects, or delve into backend
           architectures, Alpha Codes is your gateway to enhancing your coding
           skills and igniting your passion for software development.
