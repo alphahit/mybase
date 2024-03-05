@@ -45,12 +45,31 @@ const SinglePostPage = async ({ params }) => {
   //Fetch DATA without an API
   //const post = await getPost(slug);
   console.log("SinglePostPage post===>", post);
-  const copyToClipboard = (str) => {
-    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(str);
-    }
-    return Promise.reject("The Clipboard API is not available.");
-  };
+  function formatApiText(text) {
+    // Step 1: Insert a new line before "-**" if it's not at the beginning of the text
+    let formattedText = text.replace(/(?<!^)-\*\*/g, "\n\n-**");
+
+    // Step 2: Insert a line break after the colon that follows the function name
+    formattedText = formattedText.replace(/(\*\*`[^`]+`\*\*):/g, "$1:\n");
+
+    return formattedText;
+  }
+  function formatApiTextToJSX(text) {
+    // Split the text by double newlines to create an array of sections
+    const sections = text.split("\n\n");
+
+    // Map over the sections and create JSX for each one
+    return sections.map((section, index) => (
+      <div key={index}>
+        {section.split("\n").map((line, lineIndex) => (
+          <div key={lineIndex}>
+            {line}
+            <br />
+          </div>
+        ))}
+      </div>
+    ));
+  }
   return (
     <div className={styles.container}>
       {/* <div className={styles.imgContainer}>
@@ -81,7 +100,7 @@ const SinglePostPage = async ({ params }) => {
             </span>
           </div>
         </div>
-        <div className={styles.content}>{post.desc}</div>
+        <div className={styles.content}>{formatApiText(post.desc)}</div>
         {post?.type === "dsa" && post?.subDesc && (
           <div className={`${styles.codeContainer} ${styles.glow}`}>
             <CopyToClipboardButton textToCopy={post.subDesc} />
