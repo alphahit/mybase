@@ -1,5 +1,19 @@
+"use client";
+import React, { useState } from "react";
 import { addPost, deletePost } from "@/lib/action";
 const AdminPage = () => {
+  const [descFields, setDescFields] = useState([{ value: "" }]);
+
+  const handleAddField = () => {
+    const newField = { value: "" };
+    setDescFields([...descFields, newField]);
+  };
+
+  const handleChange = (index, event) => {
+    const values = [...descFields];
+    values[index].value = event.target.value;
+    setDescFields(values);
+  };
   return (
     <div
       style={{
@@ -32,7 +46,7 @@ const AdminPage = () => {
               borderRadius: "4px",
             }}
           />
-          <input
+          {/* <input
             type="text"
             placeholder="desc"
             name="desc"
@@ -42,11 +56,44 @@ const AdminPage = () => {
               borderColor: "#ccc",
               borderWidth: "1px",
               borderRadius: "4px",
-              minHeight: "100px",
-              whiteSpace: "pre-wrap",
-              overflowWrap: "break-word",
+              minHeight: "200px",
             }}
-          />
+          /> */}
+          {descFields.map((field, index) => (
+            <input
+              key={index}
+              type="text"
+              placeholder="desc"
+              name={`desc${index}`} // Dynamic name based on index
+              value={field.value}
+              onChange={(event) => handleChange(index, event)}
+              style={{
+                padding: "10px",
+                color: "#333",
+                borderColor: "#ccc",
+                borderWidth: "1px",
+                borderRadius: "4px",
+                minHeight: "100px",
+              }}
+            />
+          ))}
+
+          <button
+            type="button"
+            onClick={handleAddField}
+            style={{
+              padding: "10px",
+              marginTop: "10px",
+              backgroundColor: "#007bff",
+              color: "#fff",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+              width: "50px",
+            }}
+          >
+            +
+          </button>
           <input
             type="text"
             placeholder="slug"

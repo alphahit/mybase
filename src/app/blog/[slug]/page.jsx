@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { getPost } from "@/lib/data";
 import dynamic from "next/dynamic";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { stackoverflowDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import CopyToClipboardButton from "@/components/CopyToClipboardButton";
 
 export const generateMetadata = async ({ params }) => {
@@ -46,30 +46,10 @@ const SinglePostPage = async ({ params }) => {
   //const post = await getPost(slug);
   console.log("SinglePostPage post===>", post);
   function formatApiText(text) {
-    // Step 1: Insert a new line before "-**" if it's not at the beginning of the text
-    let formattedText = text.replace(/(?<!^)-\*\*/g, "\n\n-**");
-
-    // Step 2: Insert a line break after the colon that follows the function name
-    formattedText = formattedText.replace(/(\*\*`[^`]+`\*\*):/g, "$1:\n");
-
+    let formattedText = text.split("|>*<|").join("\n");
     return formattedText;
   }
-  function formatApiTextToJSX(text) {
-    // Split the text by double newlines to create an array of sections
-    const sections = text.split("\n\n");
 
-    // Map over the sections and create JSX for each one
-    return sections.map((section, index) => (
-      <div key={index}>
-        {section.split("\n").map((line, lineIndex) => (
-          <div key={lineIndex}>
-            {line}
-            <br />
-          </div>
-        ))}
-      </div>
-    ));
-  }
   return (
     <div className={styles.container}>
       {/* <div className={styles.imgContainer}>
@@ -86,27 +66,38 @@ const SinglePostPage = async ({ params }) => {
       </div> */}
 
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>{post.title}</h1>
+        <div className={styles.title}>{post.title}</div>
+        <span className="text-sm bg-blue-600 rounded py-1 w-28 text-center">
+          {post.createdAt.toString().slice(0, 16).split("T")[0]}
+        </span>
 
-        <div className={styles.detail}>
-          {/* {post && (
+        {/* <div className={styles.detail}>
+          {post && (
             <Suspense fallback={<div>...</div>}>
               <PostUser userId={post.userId} />
             </Suspense>
-          )} */}
+          )}
           <div className={styles.detailText}>
             <span className={styles.detailValue}>
               {post.createdAt.toString().slice(0, 16).split("T")[0]}
             </span>
           </div>
+        </div> */}
+        {console.log("formatApiText(post.desc)===?", formatApiText(post.desc))}
+        <div className={styles.content}>
+          {post.desc.split("|>*<|").map((item, index) => (
+            <div className="mt-4" key={index}>
+              <div className="font-semibold mb-1">{item.split(":")[0]}:</div>
+              <div>{item.split(":")[1]}</div>
+            </div>
+          ))}
         </div>
-        <div className={styles.content}>{formatApiText(post.desc)}</div>
         {post?.type === "dsa" && post?.subDesc && (
           <div className={`${styles.codeContainer} ${styles.glow}`}>
             <CopyToClipboardButton textToCopy={post.subDesc} />
             <SyntaxHighlighter
               language="javascript"
-              style={docco}
+              style={stackoverflowDark}
               showLineNumbers
             >
               {post.subDesc}

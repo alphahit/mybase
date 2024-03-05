@@ -108,7 +108,7 @@ export const CardInside = ({ children, className, post }) => {
             {post.desc}
           </Typography> */}
           <Typography
-            variant="h2"
+            variant="h4"
             color="white"
             className="mb-6 font-medium leading-[1.5]"
           >

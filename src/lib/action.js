@@ -18,34 +18,44 @@ import { revalidatePath } from "next/cache";
 // which helps in maintaining consistent data integrity and implementing complex business rules.
 
 export const addPost = async (formData) => {
+    // Initialize an empty array to hold the descriptions
+    let descs = [];
 
-    // const title = formData.get('title')
-    // const desc = formData.get('desc')
-    // const slug = formData.get('slug')
-    // const userId = formData.get('userId')
+    // Convert formData to an object to easily work with the data
+    const formDataObj = Object.fromEntries(formData);
 
-    const {title, desc, slug, userId, type, subDesc} = Object.fromEntries(formData) 
-
-    console.log(formData)
-
-    try{
-        connectToDb()
-        const newPost = new Post({
-            title : title,
-            desc : desc,
-            slug : slug,
-            userId : userId,
-            type : type,
-            subDesc : subDesc
-        });
-        await newPost.save()
-        console.log("Saved To DB")
-        revalidatePath("/blog")
-    }catch(err){
-        console.log("err addPost", err)
-        return {error : "Something Went Wrong"}
+    // Iterate over formDataObj to find and collect all `desc` fields
+    for (const key in formDataObj) {
+        if (key.startsWith('desc')) { // Check if the key starts with 'desc'
+            descs.push(formDataObj[key]); // Add the value to the descs array
+        }
     }
-}
+
+    // Extract other fields directly
+    const { title, slug, userId, type, subDesc } = formDataObj;
+
+    // console.log("formData===>", formData);
+    console.log("Type of descs:", typeof descs);
+    console.log("Content of descs:", JSON.stringify(descs, null, 2));
+    try {
+        connectToDb();
+        const newPost = new Post({
+            title: title,
+            desc: descs.join('|>*<|'), 
+            slug: slug,
+            userId: userId,
+            type: type,
+            subDesc: subDesc
+        });
+        await newPost.save();
+        console.log("Saved To DB");
+        revalidatePath("/blog");
+    } catch (err) {
+        console.log("err addPost", err);
+        return { error: "Something Went Wrong" };
+    }
+};
+
 
 export const deletePost = async (formData) => {
     "use server"
