@@ -63,7 +63,8 @@ export default function Links({ session }) {
         {links.map((link) => (
           <NavLink item={link} key={link.title} />
         ))}
-        {session?.user ? (
+        {process.env.NEXT_PUBLIC_API_BASE_URL !==
+          "https://alpha-codes.vercel.app/" && session?.user ? (
           <>
             {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
             <div className="flex items-center">
