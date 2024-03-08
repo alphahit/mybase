@@ -67,7 +67,10 @@ const SinglePostPage = async ({ params }) => {
 
       <div className={styles.textContainer}>
         <div className={styles.title}>{post.title}</div>
-        <span className="text-sm bg-blue-600 rounded py-1 w-28 text-center">
+        <span
+          className="text-sm rounded py-1 w-28 text-center border-white border"
+          style={{ backgroundColor: "rgb(28, 4, 36)" }}
+        >
           {post.createdAt.toString().slice(0, 16).split("T")[0]}
         </span>
 
@@ -83,7 +86,7 @@ const SinglePostPage = async ({ params }) => {
             </span>
           </div>
         </div> */}
-        {console.log("formatApiText(post.desc)===?", formatApiText(post.desc))}
+        {/* {console.log("formatApiText(post.desc)===?", formatApiText(post.desc))} */}
         <div className={styles.content}>
           {post.desc.split("|>*<|").map((item, index) => (
             <div className="mt-4" key={index}>

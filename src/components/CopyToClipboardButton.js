@@ -18,7 +18,7 @@ const CopyToClipboardButton = ({ textToCopy }) => {
     position: 'absolute',
     right: '10px',
     top: '10px',
-    backgroundColor: isHovered ? '#0056b3' : '#0070f3', // Change color on hover
+    backgroundColor: isHovered ? 'rgb(28, 4, 36)' : 'rgb(105, 71, 117 , 0.5)', // Change color on hover
     color: 'white',
     border: 'none',
     borderRadius: '5px',

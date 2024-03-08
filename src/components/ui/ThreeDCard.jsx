@@ -155,15 +155,38 @@ export const CardItem = ({
   return (
     <Tag
       ref={ref}
-      className={cn("w-full transition duration-200 ease-linear", className)}
+      className={cn("w-full transition duration-200 ease-linear ", className)}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
       {...rest}
     >
       {/* {children} */}
 
-      <Button>
-        {/* <Link href={`/blog/${post.id}`}>READ MORE</Link> */}
-        <Link href={`/blog/${post.slug}`}>READ MORE</Link>
-      </Button>
+      {/* <Button>
+       
+       
+      </Button> */}
+      <div
+        type="button"
+        style={{
+          backgroundColor: "rgb(28, 4, 36)",
+          color: "white",
+          padding: "10px",
+          textAlign: "center",
+          alignSelf: "center",
+          width: "31px",
+          borderLeft: "1px solid rgb(28, 4, 36)",
+          borderTopLeftRadius: "10px",
+          borderBottomLeftRadius: "10px",
+        }}
+      >
+        <Link href={`/blog/${post.slug}`} style={{ width: "80px" }}>
+          READ MORE
+        </Link>
+      </div>
     </Tag>
   );
 };
