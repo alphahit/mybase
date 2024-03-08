@@ -49,11 +49,22 @@
 .img {
   object-fit: contain;
 }
-
+.mobileOnly {
+  display: none;
+}
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
     text-align: center;
+  }
+  .hideOnMobile {
+    display: none;
+  }
+  .mobileOnly {
+    display: block;
+    background-color: rgb(28, 4, 36);
+    padding: 25px;
+    border-radius: 10px;
   }
 
   .boxes {

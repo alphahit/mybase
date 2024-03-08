@@ -10,27 +10,35 @@ export const metadata = {
   title: "About Page",
   description: "About description",
 };
-
+const content = ` With a vibrant journey from a React Native Developer intern to a
+Senior Software Developer, I, Prateek Priyadarshi, have shaped
+digital experiences that resonate. My toolkit spans MERN Stack,
+React Native, Next.js, and a blend of modern technologies, driving
+me to create seamless, user-centric applications. From ideation to
+deployment, my projects - range from Hyperlocal Market Delivery
+apps, E-Commerce and HealthCare domains.`;
 const AboutPage = () => {
   // console.log("lets check where it works")
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
+        <div
+          className={styles.mobileOnly}
+          // style={{ backgroundColor: "rgb(28, 4, 36)" }}
+        >
+          <p className="text-2xl font-extrabold tracking-wide">
+            Prateek Priyadarshi
+          </p>
+          <p className="mt-6">{content}</p>
+        </div>
         <TextRevealCard
+          className={`${styles.description} ${styles.hideOnMobile}`}
           text="You know the business."
           revealText="I know the code."
         >
           <p className={styles.title}>Prateek Priyadarshi</p>
 
-          <TextRevealCardDescription>
-            With a vibrant journey from a React Native Developer intern to a
-            senior Software Developer, I, Prateek Priyadarshi, have shaped
-            digital experiences that resonate. My toolkit spans MERN Stack,
-            React Native, Next.js, and a blend of modern technologies, driving
-            me to create seamless, user-centric applications. From ideation to
-            deployment, my projects - range from Hyperlocal Market Delivery
-            apps, E-Commerce and HealthCare domains.
-          </TextRevealCardDescription>
+          <TextRevealCardDescription>{content}</TextRevealCardDescription>
         </TextRevealCard>
         {/* <h1 className={styles.title}>
           Crafting Innovative Solutions Through Code.
