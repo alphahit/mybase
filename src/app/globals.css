@@ -25,16 +25,20 @@ a {
 }
 
 .container {
-  width: 1536px;
+  width: 100%;
   margin: auto;
-  padding-left: 50px;
-  padding-right: 50px;
+  /* padding-left: 50px;
+  padding-right: 50px; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
+/* .container-content {
+  padding-left: 50px;
+  padding-right: 50px;
+} */
+/* 
 @media (max-width: 1536px) {
   .container {
     width: 1366px;
@@ -61,4 +65,4 @@ a {
   .container {
     width: 475px;
   }
-}
+} */

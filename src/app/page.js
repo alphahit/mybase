@@ -8,18 +8,16 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <div className="h-[20rem]  flex flex-col items-center justify-center overflow-hidden rounded-md">
+        <div className="h-[10rem] lg:h-[20rem] lg:mt-0 mt-10  flex flex-col items-center justify-center overflow-hidden rounded-md">
           <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">
             Alpha Codes.
           </h1>
-          <div className="w-[40rem] h-40 relative ">
-            {/* Gradients */}
+          <div className="w-[40rem] h-40  relative ">
             <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
             <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
             <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
             <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
 
-            {/* Core component */}
             <SparklesCore
               background="transparent"
               minSize={0.4}
@@ -29,13 +27,12 @@ export default function Home() {
               particleColor="#FFFFFF"
             />
 
-            {/* Radial Gradient to prevent sharp edges */}
             <div className="absolute inset-0 w-full h-full [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]" style={{backgroundColor:'#0d0c22'}}></div>
           </div>
         </div>
       
 
-        <p className={styles.desc}>
+        <p className="lg:text-2xl text-lg">
           Welcome to Alpha Codes, your daily dose of Data Structures and
           Algorithms (DSA) challenges, and a treasure trove of projects in React
           Native, Next.js, MERN and fullstack development. Dive into my journey of
