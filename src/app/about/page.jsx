@@ -15,7 +15,7 @@ Senior Software Developer, I, Prateek Priyadarshi, have shaped
 digital experiences that resonate. My toolkit spans MERN Stack,
 React Native, Next.js, and a blend of modern technologies, driving
 me to create seamless, user-centric applications. From ideation to
-deployment, my projects - range from Hyperlocal Market Delivery
+deployment, the projects that i have worked on - range from Hyperlocal Market Delivery
 apps, E-Commerce and HealthCare domains.`;
 const AboutPage = () => {
   // console.log("lets check where it works")
