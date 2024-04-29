@@ -5,7 +5,7 @@ const Toast = dynamic(() => import("react-toastify").then((mod) => mod.toast), {
   ssr: false,
 });
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import styles from "./links.module.css";
 import NavLink from "./navLink/navLink";
