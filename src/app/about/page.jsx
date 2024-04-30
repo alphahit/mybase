@@ -5,11 +5,22 @@ import {
     TextRevealCardDescription,
     TextRevealCardTitle,
 } from '@/components/ui/TextReveal';
-import { FaGithubSquare } from 'react-icons/fa';
+
 import { FaLinkedin } from 'react-icons/fa6';
-import { FaInstagramSquare } from 'react-icons/fa';
-import { IoIosMail } from "react-icons/io";
+
+import {
+    FaGithubSquare,
+    FaInstagramSquare,
+    FaNode,
+    FaReact,
+} from 'react-icons/fa';
+import { TbBrandNextjs } from "react-icons/tb";
+import { TbBrandReactNative } from 'react-icons/tb';
+import { IoIosMail } from 'react-icons/io';
+import { SiTypescript, SiExpress, SiGraphql } from 'react-icons/si';
+import { DiMongodb } from 'react-icons/di';
 import Link from 'next/link';
+import Skills from '@/components/Skills';
 export const metadata = {
     title: 'About Page',
     description: 'About description',
@@ -27,7 +38,7 @@ const AboutPage = () => {
 
     const socials = [
         {
-            link: 'https://www.linkedin.com/in/prateekpriyadarshi/',
+            link: 'https://www.linkedin.com/in/prateek-pi/',
             label: 'LinkedIn',
             Icon: <FaLinkedin />,
         },
@@ -37,14 +48,48 @@ const AboutPage = () => {
             Icon: <FaGithubSquare />,
         },
         {
-          link: 'https://www.linkedin.com/in/prateekpriyadarshi/',
-          label: 'Gmail',
-          Icon: <IoIosMail />,
-      },
+            link: 'https://www.linkedin.com/in/prateekpriyadarshi/',
+            label: 'Gmail',
+            Icon: <IoIosMail />,
+        },
         {
             link: 'https://www.linkedin.com/in/prateekpriyadarshi/',
             label: 'Instagram',
             Icon: <FaInstagramSquare />,
+        },
+    ];
+    const skills = [
+        {
+            label: 'React Native',
+            Icon: <TbBrandReactNative />,
+        },
+        {
+            label: 'Next.js',
+            Icon: <TbBrandNextjs />,
+        },
+        {
+            label: 'React',
+            Icon: <FaReact />,
+        },
+        {
+            label: 'TypeScript',
+            Icon: <SiTypescript />,
+        },
+        {
+            label: 'Node.js',
+            Icon: <FaNode />,
+        },
+        {
+            label: 'Express.js',
+            Icon: <SiExpress />,
+        },
+        {
+            label: 'GraphQL',
+            Icon: <SiGraphql />,
+        },
+        {
+            label: 'MongoDB',
+            Icon: <DiMongodb />,
         },
     ];
     return (
@@ -70,7 +115,6 @@ const AboutPage = () => {
                         {content}
                     </TextRevealCardDescription>
                 </TextRevealCard>
-                
 
                 <div className={styles.boxes}>
                     <div className={styles.box}>
@@ -87,22 +131,28 @@ const AboutPage = () => {
                     </div>
                 </div>
                 <div className={styles.boxes}>
-                  {socials.map((social) => {
-                    return (
-                      <Link href={social.link} key={index} className={styles.box} aria-label={social.label}>
-                        
-                       </Link>
-                    )
-                  })}
-                   
-                    
+                    {socials.map((social, index) => {
+                        return (
+                            <Link
+                                href={social.link}
+                                key={index}
+                                className={styles.box}
+                                aria-label={social.label}
+                            >
+                                <div className="pt-1 rounded flex items-center gap-2 cursor-pointer">
+                                    <div className="flex justify-center">
+                                        {social.Icon}
+                                    </div>
+                                    <div>{social.label}</div>
+                                    {/* <div>{social.link}</div> */}
+                                </div>
+                            </Link>
+                        );
+                    })}
                 </div>
             </div>
-            <div
-                className={`${styles.imgContainer} flex items-center justify-center`}
-            >
-                {/* <Image src="/about.png" alt="About Image" fill className={styles.img} /> */}
-                <h1>Projects Gallore Coming Soon ... </h1>
+            <div className={`${styles.imgContainer} flex  justify-center `}>
+                <Skills item={skills} />
             </div>
         </div>
     );
