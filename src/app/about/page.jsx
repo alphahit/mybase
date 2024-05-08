@@ -21,6 +21,9 @@ import { SiTypescript, SiExpress, SiGraphql } from 'react-icons/si';
 import { DiMongodb } from 'react-icons/di';
 import Link from 'next/link';
 import Skills from '@/components/Skills';
+import Title from '@/components/Title';
+import Socials from '@/components/Socials';
+import Milestones from '@/components/MileStones';
 export const metadata = {
     title: 'About Page',
     description: 'About description',
@@ -92,7 +95,7 @@ const AboutPage = () => {
             <div className={styles.textContainer}>
                 <div
                     className={styles.mobileOnly}
-                    // style={{ backgroundColor: "rgb(28, 4, 36)" }}
+               
                 >
                     <p className="text-2xl font-extrabold tracking-wide">
                         Prateek Priyadarshi
@@ -111,44 +114,18 @@ const AboutPage = () => {
                     </TextRevealCardDescription>
                 </TextRevealCard>
 
-                <div className={styles.boxes}>
-                    <div className={styles.box}>
-                        <h1>3+</h1>
-                        <p>Years of Experience</p>
-                    </div>
-                    <div className={styles.box}>
-                        <h1>10+</h1>
-                        <p>Projects Delivered</p>
-                    </div>
-                    <div className={styles.box}>
-                        <h1>6+</h1>
-                        <p>Professional Certifications</p>
-                    </div>
-                </div>
-                <div className={styles.boxes}>
-                    {socials.map((social, index) => {
-                        return (
-                            <Link
-                                href={social.link}
-                                key={index}
-                                className={styles.box}
-                                aria-label={social.label}
-                            >
-                                <div className="pt-1 rounded flex items-center gap-2 cursor-pointer">
-                                    <div className="flex justify-center">
-                                        {social.Icon}
-                                    </div>
-                                    <div>{social.label}</div>
-                                    {/* <div>{social.link}</div> */}
-                                </div>
-                            </Link>
-                        );
-                    })}
-                </div>
+                
+                
             </div>
-            <div className={`${styles.imgContainer} flex  justify-center `}>
+            
+            <div className={`${styles.imgContainer} flex  flex-col`}>
+          
+                <Socials socials={socials}/>
                 <Skills item={skills} />
+                <Milestones />
+                
             </div>
+           
         </div>
     );
 };
