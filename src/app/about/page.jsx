@@ -43,17 +43,12 @@ const AboutPage = () => {
             Icon: <FaLinkedin />,
         },
         {
-            link: 'https://www.linkedin.com/in/prateekpriyadarshi/',
+            link: 'https://github.com/alphahit',
             label: 'GitHub',
             Icon: <FaGithubSquare />,
         },
         {
-            link: 'https://www.linkedin.com/in/prateekpriyadarshi/',
-            label: 'Gmail',
-            Icon: <IoIosMail />,
-        },
-        {
-            link: 'https://www.linkedin.com/in/prateekpriyadarshi/',
+            link: 'https://www.instagram.com/sage_hit?igsh=MWF0NzByMGp5bTlhMg==',
             label: 'Instagram',
             Icon: <FaInstagramSquare />,
         },

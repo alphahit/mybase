@@ -44,9 +44,9 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card>
-            {/* <CardTitle>{item.title}</CardTitle> */}
+           
             <CardTitle>{item.label}</CardTitle>
-            {/* <CardDescription>{item.description}</CardDescription> */}
+            
             <CardDescription>{item.Icon}</CardDescription>
           </Card>
         </div>
@@ -62,12 +62,12 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-4 overflow-hidden bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
+        " rounded-2xl h-full w-full overflow-hidden bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
         className
       )}
     >
       <div className="relative z-50">
-        <div className="p-4">{children}</div>
+        <div className="p-4 gap-2" style={{display:'flex', alignItems: 'center', justifyContent: 'center'}}>{children}</div>
       </div>
     </div>
   );
@@ -77,7 +77,7 @@ export const CardTitle = ({
   children,
 }) => {
   return (
-    <h4 className={cn("text-zinc-100 font-bold tracking-wide mt-4", className)}>
+    <h4 className={cn("text-zinc-100 font-bold tracking-wide", className)}>
       {children}
     </h4>
   );
@@ -89,7 +89,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "mt-8 text-zinc-400 tracking-wide leading-relaxed text-sm",
+        " text-zinc-400 tracking-wide leading-relaxed text-sm",
         className
       )}
     >
