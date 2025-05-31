@@ -1,4 +1,4 @@
-    // "Server actions" refer to operations or tasks performed on a server-side environment in the context of web and software development.
+// "Server actions" refer to operations or tasks performed on a server-side environment in the context of web and software development.
 // Unlike client-side actions, which happen in the user's browser or device, server actions are processed on a web server.
 // These actions can encompass a wide range of activities, including but not limited to:
 "use server"
@@ -17,28 +17,57 @@ import { revalidatePath } from "next/cache";
 // Server actions are crucial for the security, efficiency, and functionality of web applications and services. They allow for the centralization of logic and data management,
 // which helps in maintaining consistent data integrity and implementing complex business rules.
 
-export const addPost = async (formData) => {
-    // Initialize an empty array to hold the descriptions
-    let descs = [];
 
-    // Convert formData to an object to easily work with the data
+// React Server Components (RSC) - New Way:
+
+// Now, with RSC (supported in Next.js 13+ with the new /app directory), you can mark individual components as 
+// server components by simply making them async or by using the 'use server' directive.
+
+// Server Components are rendered only on the server: They can fetch data, run heavy server-only code, or use private APIs—and 
+// the result is never sent as JavaScript to the browser, just the result (HTML or a special serialized format).
+
+// Benefit: You can split your page into parts: some run on the server (heavy, secure, data-fetching logic), 
+// others run on the client (interactivity).
+
+
+
+// Heavy npm Packages Only on the Server
+// If you import a large npm package (for example, for Markdown rendering or database access) in a server component, 
+// that package will never be sent to the client. Only the result (the generated HTML or UI) is sent.
+
+// This reduces your JavaScript bundle size, improves performance, and keeps server-only logic private.
+
+
+
+// No Need to Decide at Page Level
+// Before: You had to pick, for the entire page, whether it would be static, server-rendered, or client-rendered.
+
+// Now: You can choose for each component whether it should be a server component (runs only on the server) or a client component'
+// (runs in the browser, with interactivity).
+
+// Example: Your page can have a big list fetched and rendered on the server (server component) 
+// and a button or form for user interaction (client component).
+
+// Summary
+
+// React Server Components in Next.js let you decide per component (not just per page) what runs on the server.
+// Heavy logic and large packages stay on the server; only results (HTML/UI) are sent to the client.
+// This makes your site faster, more secure, and more SEO-friendly.
+
+export const addPost = async (formData) => {
+    let descs = [];
     const formDataObj = Object.fromEntries(formData);
 
-    // Iterate over formDataObj to find and collect all `desc` fields
     for (const key in formDataObj) {
-        if (key.startsWith('desc')) { // Check if the key starts with 'desc'
-            descs.push(formDataObj[key]); // Add the value to the descs array
+        if (key.startsWith('desc')) {
+            descs.push(formDataObj[key]);
         }
     }
 
-    // Extract other fields directly
     const { title, slug, userId, type, subDesc } = formDataObj;
 
-    // console.log("formData===>", formData);
-    console.log("Type of descs:", typeof descs);
-    console.log("Content of descs:", JSON.stringify(descs, null, 2));
     try {
-        connectToDb();
+        await connectToDb();
         const newPost = new Post({
             title: title,
             desc: descs.join('|>*<|'), 
@@ -48,7 +77,6 @@ export const addPost = async (formData) => {
             subDesc: subDesc
         });
         await newPost.save();
-        console.log("Saved To DB");
         revalidatePath("/blog");
     } catch (err) {
         console.log("err addPost", err);
@@ -56,36 +84,23 @@ export const addPost = async (formData) => {
     }
 };
 
-
 export const deletePost = async (formData) => {
-    "use server"
+    const {id} = Object.fromEntries(formData);
 
-    const {id} = Object.fromEntries(formData) 
-
-    console.log(formData)
-
-    try{
-        connectToDb()
+    try {
+        await connectToDb();
         await Post.findByIdAndDelete(id);
-        console.log("Delete From DB")
-        revalidatePath("/blog")
-    }catch(err){
-        console.log("err addPost", err)
-        return {error : "Something Went Wrong"}
+        revalidatePath("/blog");
+    } catch (err) {
+        console.log("err deletePost", err);
+        return {error: "Something Went Wrong"};
     }
-}
-
+};
 
 export const handleGithubLogin = async () => {
-    "use server";
-    await signIn("github"); 
-    //let signInResult = 
-    // console.log("signIn===>",signInResult)
-  
-  };
+    await signIn("github");
+};
 
-  export const handleGithubLogout = async () => {
-    "use server";
-
-    await signOut(); 
-  };
+export const handleGithubLogout = async () => {
+    await signOut();
+};

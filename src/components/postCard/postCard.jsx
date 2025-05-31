@@ -13,12 +13,12 @@
 // } from "@material-tailwind/react";
 import { CardContainer, CardInside } from "../ui/ThreeDCard";
 const PostCard = ({ post }) => {
-  console.log("post=====>", post);
-  const cardHeaderStyle = post.img
-    ? {
-        backgroundImage: `url('${post.img}')`,
-      }
-    : {};
+  // console.log("post=====>", post);
+  // const cardHeaderStyle = post.img
+  //   ? {
+  //       backgroundImage: `url('${post.img}')`,
+  //     }
+  //   : {};
   return (
     <CardContainer>
       <CardInside post={post} />

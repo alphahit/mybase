@@ -1,5 +1,5 @@
 // This function should return a list of posts, but it's incomplete.
-
+"use server"
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
 
